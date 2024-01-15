@@ -1,0 +1,74 @@
+Tables:
+
+Auction Table:
+AuctionID (Primary Key)
+AuctionName
+RegistrationDate
+AuctionDate
+StartTime
+EndTime
+Status (e.g., upcoming, ongoing, completed)
+UserID
+Auction Image
+Category (Foreign Key Referencing Category)
+Locations (Foreign Key Referencing Locations)
+
+Lot Table:
+LotID (Primary Key)
+AuctionID (Foreign Key referencing Auction)
+LotNumber
+Artist
+YearProduced
+SubjectClassification
+Description
+EstimatedPrice
+CurrentBid (for real-time bidding)
+LotImage
+
+Category Table:
+CategoryID (Primary Key)
+CategoryName (Paintings, Drawings, Photographic Images, Sculptures, Carvings)
+
+User Account Table:
+UserID (Primary Key)
+Email
+Address
+Phone Number
+Username
+Password (encrypted)
+UserType (Buyer, Seller, Admin)
+
+Bid Table:
+BidID (Primary Key)
+LotID (Foreign Key referencing Lot)
+UserID (Foreign Key referencing User Account)
+BidAmount
+BidTime
+BidDate
+
+Location Table:
+LocationID (Primary Key)
+locationName
+
+Relationships:
+Auction to Lot: One-to-Many (An auction can have multiple lots)
+Lot to Category: Many-to-One (Many lots can belong to one category)
+Bid to Lot: Many-to-One (Many bids can be placed on one lot)
+User Account to Bid: One-to-Many (One user can place multiple bids)
+
+Enumerations:
+
+Auction Status Enumeration:
+Upcoming
+Ongoing
+Completed
+
+User Type Enumeration:
+Buyer (User)
+Seller
+Admin
+
+Additional Considerations:
+Implement real-time bidding functionality within the system.
+Three predefined price bands can be stored as constants or in a separate table if they are subject to change.
+Implement automated account notifications through email or other communication channels.
