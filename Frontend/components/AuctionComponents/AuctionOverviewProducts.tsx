@@ -2,86 +2,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import checkLogin from "@/app/session";
-import { useRouter, usePathname } from "next/navigation";
 
 export default function AuctionOverviewProducts() {
 	const [auctions, setAuctions] = useState([]);
 	const [imageError, setImageError] = useState(false);
-	const [userId, setUserId] = useState(null);
-	const [userDetails, setUserDetails] = useState(null);
-	const [userRole, setUserRole] = useState<string | null>(null);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const router = useRouter();
-
-	const fetchUserInfo = useCallback(async () => {
-		try {
-			const jwt = localStorage.getItem("jwt");
-			console.log(jwt);
-
-			if (!jwt) {
-				setIsLoggedIn(false);
-				return;
-			}
-
-			fetch("http://localhost:8080/api/user/info", {
-				headers: { Authorization: "Bearer " + jwt },
-			})
-				.then((response) => {
-					if (!response.ok) {
-						setIsLoggedIn(false);
-						throw Error(response.statusText);
-					}
-					return response.json();
-				})
-				.then((data) => {
-					if (data) {
-						console.log(data);
-						setUserDetails(data);
-
-						// Extract and set the user ID
-						const fetchedUserId = data.userId;
-						setUserId(fetchedUserId);
-
-						// Other user role checks
-						const isSeller = data.authorities.some(
-							(authority: { roleId: number; authority: string }) =>
-								authority.authority === "SELLER"
-						);
-
-						setUserRole(isSeller ? "SELLER" : "USER");
-						setIsLoggedIn(true);
-					} else {
-						setIsLoggedIn(false);
-					}
-				})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
-		} catch (error) {
-			console.error("Error:", error);
-		}
-	}, []);
-
-	useEffect(() => {
-		const loggedIn = checkLogin();
-		setIsLoggedIn(loggedIn);
-
-		// Redirect if not logged in and trying to access a protected page
-		if (loggedIn) {
-			fetchUserInfo();
-		} else {
-			router.push("/");
-		}
-	}, [fetchUserInfo, router]);
 
 	const handleImageError = () => {
 		setImageError(true);
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:8080/api/auctions/user/${userId}`)
+		fetch("http://localhost:8080/api/auctions")
 			.then((response) => response.json())
 			.then((data) => {
 				const formattedData = data.map((auction: any) => {
@@ -106,7 +37,7 @@ export default function AuctionOverviewProducts() {
 				setAuctions(formattedData);
 				console.log(data);
 			});
-	}, [userId]);
+	}, []);
 
 	function formatDate(dateString: string) {
 		const options: Intl.DateTimeFormatOptions = {
@@ -173,7 +104,7 @@ export default function AuctionOverviewProducts() {
 													size={"lg"}
 													variant={"ghost"}
 													className="border-2 border-black">
-													View Works
+													Follow Auction/View Works
 												</Button>
 											</span>
 										</p>

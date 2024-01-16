@@ -192,19 +192,6 @@ export default function FilterLots({}) {
 
 									{/* Filters */}
 									<form className="mt-4 border-t border-gray-200">
-										{/* <h3 className="sr-only">Categories</h3>
-										<ul
-											role="list"
-											className="px-2 py-3 font-medium text-gray-900">
-											{subCategories.map((category) => (
-												<li key={category.name}>
-													<a href={category.href} className="block px-2 py-3">
-														{category.name}
-													</a>
-												</li>
-											))} */}
-										{/* </ul> */}
-
 										{filters.map((section) => (
 											<Disclosure
 												as="div"
@@ -359,79 +346,6 @@ export default function FilterLots({}) {
 							<div className="lg:col-span-3">
 								{/* Your content */}
 								<LotOverviewProducts />
-
-								{/* <section className="mt-[-82px]">
-									<div className="mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-										<ul className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-											{lots.map((lot) => (
-												<li key={lot.value}>
-													<Link
-														href={{
-															pathname: "/Bid",
-															query: {
-																lotId: lot.value,
-																auctionId: lot.auctionId,
-															},
-														}}
-														className="group block overflow-hidden">
-														<Image
-															src={`http://localhost:8080${lot.image}`}
-															alt="Auction 1"
-															width={500}
-															height={300}
-															onError={handleImageError}
-															unoptimized={true}
-															className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-														/>
-
-														<div className="relative bg-white pt-3">
-															<h4 className="font-medium text-gray-700 group-hover:underline group-hover:underline-offset-4">
-																Lot {lot.lotNumber}
-															</h4>
-
-															<h2 className="text-xl font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
-																{lot.label}
-															</h2>
-
-															<h4 className="text-gray-700 group-hover:underline group-hover:underline-offset-4">
-																{lot.description}
-															</h4>
-
-															<h4 className="text-gray-700 group-hover:underline group-hover:underline-offset-4 mt-4">
-																Estimate
-															</h4>
-
-															<h2 className="text-xl font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
-																£{lot.estimate}
-															</h2>
-
-															<p className="mt-6">
-																<span className="tracking-wider text-gray-900">
-																	{" "}
-																	<Link
-																		href={{
-																			pathname: `/Bid`,
-																			query: {
-																				lotId: lot.value,
-																				auctionId: lot.auctionId,
-																			},
-																		}}>
-																		<Button
-																			size={"lg"}
-																			variant={"ghost"}
-																			className="border-2 border-black">
-																			Follow Lots
-																		</Button>
-																	</Link>
-																</span>
-															</p>
-														</div>
-													</Link>
-												</li>
-											))}
-										</ul>
-									</div>
-								</section> */}
 							</div>
 						</div>
 					</section>
