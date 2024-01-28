@@ -1,0 +1,17 @@
+Spring Boot
+
+Java needs to be installed 
+https://www.java.com/en/download/manual.jsp
+
+The dependencies for the project are already included in the pom.xml file
+
+Running it in visual studio code, you click the run and a drop down displays then click on run java
+Running in Intellij, just Click on run
+
+
+React (Nextjs)
+node needs to be installed
+https://nodejs.org/en/download
+
+When running it, all the dependencies are included in the package.json file
+Run the application with the command "npm run dev"

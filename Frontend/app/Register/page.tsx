@@ -103,16 +103,16 @@ export default function Register() {
 				// handle bad request
 				alert("Bad request. Please check your input.");
 			} else if (response.status === 409) {
-				// handle conflict (e.g., username already exists)
+				// handling conflict (e.g., username already exists)
 				alert("Conflict. The username already exists.");
 			} else {
-				// handle other response statuses
+				// handling other response statuses
 				const errorData = await response.json();
 				setSubmitError(errorData.message);
 			}
 		} catch (error) {
 			console.error(error);
-			// handle error
+			// handling error
 			setSubmitError(error.message);
 			alert("Bad Credentials");
 		} finally {
